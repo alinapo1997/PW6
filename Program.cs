@@ -14,22 +14,29 @@ namespace PW6
             Console.WriteLine("1.Вывести данные на экран");
             Console.WriteLine("2.Добавить новую запись");
             int option = Convert.ToInt32( Console.ReadLine());             
-            string filePath = (@"C:\SKILLBOX\6PW\Employees.txt");
+            //StreamWriter stream = new StreamWriter("Employees.txt");
+            string filePath = (@"C:SKILLBOX\6PW\Employees.txt");
             bool isEmpty = File.Exists(filePath);
             if (!isEmpty)
             {
-                Console.WriteLine("Файла нет");
+                                
             }
-            switch (option)
+            else
             {
-                case 1:
-                    ShowInformation(filePath);
-                    break;
+                File.Create(filePath).Close(); 
+                switch (option)
+                {
+                    case 1:
+                        ShowInformation(filePath);
+                        break;
                     case 2:
-                    AddNewEmployee(filePath);
-                    break;
-                    default:break;
+                        AddNewEmployee(filePath);
+                        break;
+                    default: break;
+                }
+             
             }
+            
             Console.ReadKey();
         }
 
@@ -43,7 +50,7 @@ namespace PW6
             string[] lines = File.ReadAllLines(filePath);
             foreach (var line in lines)
             {
-                Console.WriteLine(line);
+                Console.WriteLine(line);            
             }
             
         }
